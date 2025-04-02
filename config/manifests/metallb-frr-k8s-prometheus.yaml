@@ -2872,29 +2872,6 @@ spec:
         - mountPath: /tmp/k8s-webhook-server/serving-certs
           name: cert
           readOnly: true
-      - args:
-        - --secure-listen-address=0.0.0.0:9120
-        - --upstream=http://127.0.0.1:7472/
-        - --logtostderr=true
-        - --v=0
-        image: gcr.io/kubebuilder/kube-rbac-proxy:v0.12.0
-        name: kube-rbac-proxy
-        ports:
-        - containerPort: 9120
-          name: metricshttps
-          protocol: TCP
-        resources:
-          limits:
-            cpu: 500m
-            memory: 128Mi
-          requests:
-            cpu: 5m
-            memory: 64Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-            - ALL
       nodeSelector:
         kubernetes.io/os: linux
       securityContext:
@@ -3360,34 +3337,6 @@ spec:
         - mountPath: /etc/metallb
           name: metallb-excludel2
           readOnly: true
-      - args:
-        - --secure-listen-address=0.0.0.0:9120
-        - --upstream=http://$(METALLB_HOST):7472/
-        - --logtostderr=true
-        - --v=0
-        env:
-        - name: METALLB_HOST
-          valueFrom:
-            fieldRef:
-              fieldPath: status.hostIP
-        image: gcr.io/kubebuilder/kube-rbac-proxy:v0.12.0
-        name: kube-rbac-proxy
-        ports:
-        - containerPort: 9120
-          name: metricshttps
-          protocol: TCP
-        resources:
-          limits:
-            cpu: 500m
-            memory: 128Mi
-          requests:
-            cpu: 5m
-            memory: 64Mi
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-            - ALL
       hostNetwork: true
       nodeSelector:
         kubernetes.io/os: linux
