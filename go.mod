@@ -19,7 +19,7 @@ require (
 	github.com/open-policy-agent/cert-controller v0.10.2-0.20240531181455-2649f121ab97
 	github.com/ory/dockertest/v3 v3.12.0
 	github.com/prometheus/client_golang v1.22.0
-	go.uber.org/zap v1.27.0
+	go.uber.org/zap v1.28.0
 	golang.org/x/sys v0.33.0
 	k8s.io/api v0.33.0
 	k8s.io/apiextensions-apiserver v0.33.0
